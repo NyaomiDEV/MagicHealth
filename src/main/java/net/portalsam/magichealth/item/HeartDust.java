@@ -28,8 +28,9 @@ public class HeartDust {
             meta.addEnchant(Enchantment.DURABILITY, 1, false);
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-            PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
-            persistentDataContainer.set(key, PersistentDataType.BYTE, (byte) 1);
+            // I wanted to add tags to everything but it breaks back-compat with crafting
+            //PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
+            //persistentDataContainer.set(key, PersistentDataType.BYTE, (byte) 1);
 
             meta.setCustomModelData(121269);
             _item.setItemMeta(meta);
