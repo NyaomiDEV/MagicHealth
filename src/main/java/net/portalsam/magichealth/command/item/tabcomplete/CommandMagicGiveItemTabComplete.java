@@ -28,7 +28,7 @@ public class CommandMagicGiveItemTabComplete implements TabCompleter {
         }
         onlinePlayers.add(PluginLanguage.getMagicGiveItemListSubcommandName());
 
-        for(ItemStack item : MagicHealthItems.MAGIC_HEALTH_ITEMS) {
+        for(ItemStack item : MagicHealthItems.getItems()) {
             itemList.add(ChatColor.stripColor(Objects.requireNonNull(item.getItemMeta()).getDisplayName().replace(" ", "_")));
         }
 

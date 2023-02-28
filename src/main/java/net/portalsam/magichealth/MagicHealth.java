@@ -13,6 +13,7 @@ import net.portalsam.magichealth.config.MagicHealthConfig;
 import net.portalsam.magichealth.database.PlayerHealth;
 import net.portalsam.magichealth.database.PluginLanguage;
 import net.portalsam.magichealth.event.*;
+import net.portalsam.magichealth.item.MagicHealthItems;
 import net.portalsam.metrics.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,6 +42,7 @@ public final class MagicHealth extends JavaPlugin {
 
         registerEvents();
         registerCommands();
+        MagicHealthItems.registerRecipes();
 
         LOGGER.info(String.format("[%s] is Enabled.", getDescription().getName()));
 

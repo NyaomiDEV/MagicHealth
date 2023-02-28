@@ -29,9 +29,9 @@ public class CommandMagicGiveItem implements CommandExecutor {
 
                     // Add the display names of all itemStacks and replace spaces in the items name with an underscore, then print that as a list to the player.
                     StringBuilder stringBuilder = new StringBuilder();
-                    for(ItemStack item : MagicHealthItems.MAGIC_HEALTH_ITEMS) {
+                    for(ItemStack item : MagicHealthItems.getItems()) {
                         stringBuilder.append(Objects.requireNonNull(item.getItemMeta()).getDisplayName().replace(" ",  "_"));
-                        if(MagicHealthItems.MAGIC_HEALTH_ITEMS.get(MagicHealthItems.MAGIC_HEALTH_ITEMS.size() - 1) != item) stringBuilder.append(ChatColor.WHITE).append(PluginLanguage.getMagicHealthSeparator()).append(" ");
+                        if(MagicHealthItems.getItems().get(MagicHealthItems.getItems().size() - 1) != item) stringBuilder.append(ChatColor.WHITE).append(PluginLanguage.getMagicHealthSeparator()).append(" ");
                     }
                     sender.sendMessage(PluginLanguage.filterDefault(PluginLanguage.getMagicGiveItemList()).replace("{ITEMLIST}", stringBuilder));
                     return true;
@@ -46,7 +46,7 @@ public class CommandMagicGiveItem implements CommandExecutor {
 
                     try {
                         // Search for the item the player specified in MAGIC_HEALTH_ITEMS, and if it is found set itemToGive to that item.
-                        for(ItemStack item : MagicHealthItems.MAGIC_HEALTH_ITEMS) {
+                        for(ItemStack item : MagicHealthItems.getItems()) {
                             if(ChatColor.stripColor(Objects.requireNonNull(item.getItemMeta()).getDisplayName()).equalsIgnoreCase(args[1].replace("_", " ")))
                             {
                                 itemToGive = item;

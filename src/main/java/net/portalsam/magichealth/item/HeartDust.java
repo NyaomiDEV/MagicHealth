@@ -1,40 +1,45 @@
 package net.portalsam.magichealth.item;
 
+import net.portalsam.magichealth.MagicHealth;
 import net.portalsam.magichealth.database.PluginLanguage;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 public class HeartDust {
 
-    public ItemStack heartDustItem;
+    static ItemStack item;
+    static final NamespacedKey key = new NamespacedKey(MagicHealth.getMagicHealthInstance(), "heart_drain_amulet");
 
-    public HeartDust(ArrayList<ItemStack> itemList) {
+    public static ItemStack getItem() {
+        if (item == null){
+            ItemStack _item = new ItemStack(Material.RED_DYE, 1);
+            ItemMeta meta = _item.getItemMeta();
 
-        ItemStack item = new ItemStack(Material.RED_DYE, 1);
-        ItemMeta meta = item.getItemMeta();
+            assert meta != null;
+            meta.setDisplayName(PluginLanguage.getHeartDustName());
 
-        assert meta != null;
-        meta.setDisplayName(PluginLanguage.getHeartDustName());
+            meta.setLore(PluginLanguage.filterItems(PluginLanguage.getHeartDustLore()));
+            meta.addEnchant(Enchantment.DURABILITY, 1, false);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
-        meta.setLore(PluginLanguage.filterItems(PluginLanguage.getHeartDustLore()));
-        meta.addEnchant(Enchantment.DURABILITY, 1, false);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
+            persistentDataContainer.set(key, PersistentDataType.BYTE, (byte) 1);
 
-        meta.setCustomModelData(121269);
-        item.setItemMeta(meta);
-        heartDustItem = item;
-
-        itemList.add(heartDustItem);
-
+            meta.setCustomModelData(121269);
+            _item.setItemMeta(meta);
+            item = _item;
+        }
+        return item;
     }
 
-    public ItemStack getHeartDustItem() {
-        return heartDustItem;
+    public static NamespacedKey getKey() {
+        return key;
     }
 
 }

@@ -4,7 +4,8 @@ import net.portalsam.magichealth.MagicHealth;
 import net.portalsam.magichealth.config.MagicHealthConfig;
 import net.portalsam.magichealth.database.PlayerHealth;
 import net.portalsam.magichealth.database.PluginLanguage;
-import net.portalsam.magichealth.item.MagicHealthItems;
+import net.portalsam.magichealth.item.HeartCrystal;
+import net.portalsam.magichealth.item.HeartDrainAmulet;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -31,7 +32,7 @@ public class MagicPlayerInteractEvent implements Listener {
         try {
 
                 // Check if item used is the heart_crystal.
-                if(Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getPersistentDataContainer().has(MagicHealthItems.HEART_CRYSTAL.getHeartCrystalKey(), PersistentDataType.BYTE)) {
+                if(Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getPersistentDataContainer().has(HeartCrystal.getKey(), PersistentDataType.BYTE)) {
                     if(event.getAction() == Action.RIGHT_CLICK_AIR) {
 
                         // Check if the config has the heart_crystal enabled.
@@ -64,7 +65,7 @@ public class MagicPlayerInteractEvent implements Listener {
             }
 
                 // Check if item used is the heart_drain_amulet.
-                if(Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getPersistentDataContainer().has(MagicHealthItems.HEART_DRAIN_AMULET.getHeartDrainAmuletKey(), PersistentDataType.BYTE)) {
+                if(Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getPersistentDataContainer().has(HeartDrainAmulet.getKey(), PersistentDataType.BYTE)) {
                     if(event.getAction() == Action.RIGHT_CLICK_AIR) {
 
                         // Check if the config has the heart_drain_amulet enabled.
